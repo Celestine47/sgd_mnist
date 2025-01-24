@@ -24,13 +24,12 @@ def create_model():
 
 
 model = create_model()
-
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
 # 将模型model的结构保存到model.png图片
-plot_model(model, to_file='model.png')
+plot_model(model, to_file='visualizer/model.png')
 
 # 添加 tf.keras.callback.TensorBoard 回调可确保创建和存储日志
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -44,5 +43,3 @@ model.fit(x=x_train,
           validation_data=(x_test, y_test),
           callbacks=[tensorboard_callback])
 
-# 可视化
-# tensorboard --logdir logs/fit
